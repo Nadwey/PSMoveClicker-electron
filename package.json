@@ -1,0 +1,21 @@
+{
+  "name": "psmoveclicker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^17.1.2",
+    "electron-rebuild": "^3.2.7",
+    "node-gyp": "^9.0.0"
+  },
+  "dependencies": {
+    "mdb-ui-kit": "^3.11.0",
+    "node-addon-api": "^4.3.0"
+  }
+}
