@@ -4,6 +4,8 @@ Program was primarly made for ADOFAI, but you can use it as a mouse.
 
 Btw I'm not responsible for breaking your PSMove (it shouldn't happen as long as you keep force above -10)
 
+![Preview](program.png)
+
 ## Usage
 
 This program works with [PSMoveService](https://github.com/psmoveservice/PSMoveService), but I recommend using [PSMoveServiceEx](https://github.com/Timocop/PSMoveServiceEx/)  

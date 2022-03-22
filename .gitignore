@@ -1,5 +1,6 @@
 PSMoveClickerAPI/build
 PSMoveClickerAPI/build/*
+build/
 .vscode
 .vs
 
