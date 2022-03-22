@@ -100,6 +100,7 @@ namespace PSMC {
 	ControllerManager::~ControllerManager()
 	{
 		UninitializeControllers();
+		PSM_Shutdown();
 	}
 
 	void ControllerManager::Process()

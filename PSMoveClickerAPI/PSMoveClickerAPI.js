@@ -1,6 +1,24 @@
 const PSMoveClickerAPI = require("./build/Release/PSMoveClickerAPI");
 
 /**
+ * Checks if is initialized
+ *
+ * @returns {Boolean} is initialized
+ */
+ const IsInitialized = () => {
+    return PSMoveClickerAPI.IsInitialized();
+};
+
+/**
+ * Checks if is connected
+ *
+ * @returns {Boolean} is connected
+ */
+ const IsConnected = () => {
+    return PSMoveClickerAPI.IsConnected();
+};
+
+/**
  * Starts PSMoveClickerAPI
  * If an instance is arleady running, this will fail
  *
@@ -32,6 +50,7 @@ const Update = () => {
  * @property {string} Battery battery status
  * @property {number} ID controller id
  * @property {boolean} IsMainPad is main controller
+ * @property {Number} RefreshRate
  */
 
 /**
@@ -92,37 +111,41 @@ const SetIsADOFAIMode = (ADOFAIMode) => {
  */
 
 /**
- * Gets color of controller with index
+ * Gets color of controller with ID
+ * if the controller doesn't exists returns null
  *
- * @param {Number} controllerIndex Index of the controller
- * @returns {RGB} color
+ * @param {Number} controllerID ID of the controller
+ * @returns {?RGB} color
  */
-const GetControllerColor = (controllerIndex) => {
-    if (typeof controllerIndex !== "number")
+const GetControllerColor = (controllerID) => {
+    if (typeof controllerID !== "number")
         throw "Invalid arguments, expected: GetControllerColor(number)";
-    return PSMoveClickerAPI.GetControllerColor(controllerIndex);
+    return PSMoveClickerAPI.GetControllerColor(controllerID);
 };
 
 /**
- * Sets color of controller with index
+ * Sets color of controller with ID
+ * if the controller doesn't exists throws
  *
- * @param {Number} controllerIndex Index of the controller
+ * @param {Number} controllerID ID of the controller
  * @param {Number} r red color (0-255)
  * @param {Number} g green color (0-255)
  * @param {Number} b blue color (0-255)
  */
-const SetControllerColor = (controllerIndex, r, g, b) => {
+const SetControllerColor = (controllerID, r, g, b) => {
     if (
-        typeof controllerIndex !== "number" ||
+        typeof controllerID !== "number" ||
         typeof r !== "number" ||
         typeof g !== "number" ||
         typeof b !== "number"
     )
         throw "Invalid arguments, expected: SetControllerColor(number, number, number, number)";
-    PSMoveClickerAPI.SetControllerColor(controllerIndex, r, g, b);
+    if (!PSMoveClickerAPI.SetControllerColor(controllerID, r, g, b)) throw "Failed to set controller color, it doesn't exist";
 };
 
 module.exports = {
+    IsConnected,
+    IsInitialized,
     Start,
     Stop,
     Update,

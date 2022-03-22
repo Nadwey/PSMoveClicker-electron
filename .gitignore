@@ -1,5 +1,7 @@
 PSMoveClickerAPI/build
 PSMoveClickerAPI/build/*
+.vscode
+.vs
 
 # Logs
 logs
