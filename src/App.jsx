@@ -36,6 +36,8 @@ export default function App() {
         const interval = setInterval(() => {
             if (PSMoveClickerAPI.IsConnected()) Notiflix.Loading.remove();
             else {
+                PSMoveClickerAPI.Stop();
+                PSMoveClickerAPI.Start();
                 Notiflix.Loading.dots("Connecting to PSMoveService");
             }
         }, 1000 * 2);
