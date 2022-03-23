@@ -2,7 +2,7 @@
 
 Program was primarly made for ADOFAI, but you can use it as a mouse.
 
-Btw I'm not responsible for breaking your PSMove (it shouldn't happen as long as you keep force above -10)
+Btw I'm not responsible for breaking your PSMove (it shouldn't happen as long as you keep the force close to 0)
 
 ![Preview](program.png)
 
@@ -23,8 +23,8 @@ You need to run it with this program
 ### Control panel usage
 
 - Swing force - Sets force of the swing (default -4, you should keep this negative)
-- ADOFAI mode - fixes multiple clicks at once in ADOFAI (noticable in levels like [Fear Grows](https://www.youtube.com/watch?v=LyX6_KqIwwU))
-- Clicking on controller info - Will blink the controller
+- ADOFAI mode - Fixes multiple clicks at once in ADOFAI (noticeable in levels like [Fear Grows](https://www.youtube.com/watch?v=LyX6_KqIwwU))
+- Clicking on controller info - Will "blink" the controller
 
 ### Geometry Dash?
 
@@ -45,5 +45,5 @@ If you are changing PSMoveClickerAPI library, you can build it with buildPSMoveC
 
 ### Building (packaging)
 
-run `npm run build`, this will build all the things (PSMoveClickerAPI, React, Electron, copy PSMoveClient_CAPI.dll file)  
+run `npm run build`, this will build everything (PSMoveClickerAPI, React, Electron, copy PSMoveClient_CAPI.dll file)  
 Packaged app will be in dist/win-unpacked
