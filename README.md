@@ -18,6 +18,7 @@ You need to run it with this program
 - Select button - Escape Button - supports holding
 - T button - Mouse cursor
 - PS Button - Sets main controller in ADOFAI mode
+- Swinging - Clicks
 
 ### Control panel usage
 
