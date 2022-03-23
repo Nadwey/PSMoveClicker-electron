@@ -12,7 +12,7 @@
                 "NAPI_CPP_EXCEPTIONS"
             ],
             "libraries": [
-                "../PSMoveClient_CAPI.lib"
+                "../PSMoveClient_CAPI.lib",
             ],
             "copies": [
                 {

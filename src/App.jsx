@@ -36,17 +36,16 @@ export default function App() {
         const interval = setInterval(() => {
             if (PSMoveClickerAPI.IsConnected()) Notiflix.Loading.remove();
             else {
-                console.log(`stop: ${PSMoveClickerAPI.Stop()}`);
-                console.log(`stop: ${PSMoveClickerAPI.Start()}`);
                 Notiflix.Loading.dots("Connecting to PSMoveService");
             }
-        }, 1000 * 3);
+        }, 1000 * 2);
         return () => clearInterval(interval);
     }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (PSMoveClickerAPI.IsConnected()) Notiflix.Loading.remove();
+            if (!PSMoveClickerAPI.IsConnected()) return;
+            Notiflix.Loading.remove();
             setControllerInfoList(PSMoveClickerAPI.GetInfo());
         }, 1000 / 6);
         return () => clearInterval(interval);
