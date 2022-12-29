@@ -1,5 +1,8 @@
 # PSMoveClicker-electron
 
+## Please note that GNU/Linux support is under development in `v2` branch using [psmoveapi](https://github.com/thp/psmoveapi).
+![](https://user-images.githubusercontent.com/81181783/209889934-2447979b-28e9-4136-b0a3-0a59af0be156.png)
+
 Program was primarly made for ADOFAI, but you can use it as a mouse.
 
 Btw I'm not responsible for breaking your PSMove (it shouldn't happen as long as you keep the force close to 0)
