@@ -1,7 +1,7 @@
 #include <node.h>
 #include "napi.h"
 
-#include "PSMC.h"
+#include "PSMC.hpp"
 
 PSMC::ControllerManager* controllerManager;
 
