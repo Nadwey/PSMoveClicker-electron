@@ -34,27 +34,6 @@ export default function App() {
     // Intervals
     useEffect(() => {
         const interval = setInterval(() => {
-            if (PSMoveClickerAPI.IsConnected()) Notiflix.Loading.remove();
-            else {
-                PSMoveClickerAPI.Stop();
-                PSMoveClickerAPI.Start();
-                Notiflix.Loading.dots("Connecting to PSMoveService");
-            }
-        }, 1000 * 2);
-        return () => clearInterval(interval);
-    }, []);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (!PSMoveClickerAPI.IsConnected()) return;
-            Notiflix.Loading.remove();
-            setControllerInfoList(PSMoveClickerAPI.GetInfo());
-        }, 1000 / 6);
-        return () => clearInterval(interval);
-    }, []);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
             PSMoveClickerAPI.Update();
         }, 1000 / 100);
         return () => clearInterval(interval);

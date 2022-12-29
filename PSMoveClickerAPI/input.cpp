@@ -36,7 +36,7 @@ namespace Input
     {
 
 #ifdef __linux__
-        XTestFakeRelativeMotionEvent(display, keyToX11Key(key), false, 0);
+        XTestFakeButtonEvent(display, keyToX11Key(key), false, 0);
         XFlush(display);
 #elif _WIN32
         // TODO, use version 1.x.x
@@ -57,7 +57,7 @@ namespace Input
         case MouseButton::LeftButton:
             return Button1;
         case MouseButton::RightButton:
-            return Button2;
+            return Button3;
         };
 #elif _WIN32
 

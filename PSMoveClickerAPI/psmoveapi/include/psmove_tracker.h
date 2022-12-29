@@ -53,6 +53,9 @@ extern "C" {
 /* Name of the environment variable used to set the biggest ROI size */
 #define PSMOVE_TRACKER_ROI_SIZE_ENV "PSMOVE_TRACKER_ROI_SIZE"
 
+/* Name of the environment variable used to set a fixed tracker color */
+#define PSMOVE_TRACKER_COLOR_ENV "PSMOVE_TRACKER_COLOR"
+
 /* Name of the environment variables for the camera image size */
 #define PSMOVE_TRACKER_WIDTH_ENV "PSMOVE_TRACKER_WIDTH"
 #define PSMOVE_TRACKER_HEIGHT_ENV "PSMOVE_TRACKER_HEIGHT"
@@ -64,9 +67,11 @@ typedef struct {
 } PSMoveTrackerRGBImage; /*!< Structure for storing RGB image data */
 
 /* Opaque data structure, defined only in psmove_tracker.c */
+#ifndef SWIG
 struct _PSMoveTracker;
 typedef struct _PSMoveTracker PSMoveTracker; /*!< Handle to a Tracker object.
                                                   Obtained via psmove_tracker_new() */
+#endif
 
 /*! Status of the tracker */
 enum PSMoveTracker_Status {
@@ -530,11 +535,24 @@ ADDCALL psmove_tracker_update(PSMoveTracker *tracker, PSMove *move);
  * production environments you usually do not want to use it.
  *
  * \param tracker A valid \ref PSMoveTracker handle
- * \param statusbar If true, draw the statusbar on top
- * \param rois If true, draw the ROIs
  */
 ADDAPI void
-ADDCALL psmove_tracker_annotate(PSMoveTracker* tracker, bool statusbar, bool rois);
+ADDCALL psmove_tracker_annotate(PSMoveTracker* tracker);
+
+/**
+ * \brief Get the current camera image as backend-specific pointer
+ *
+ * This function returns a pointer to the backend-specific camera
+ * image. Right now, the only backend supported is OpenCV, so the
+ * return value will always be a pointer to an IplImage structure.
+ *
+ * \param tracker A valid \ref PSMoveTracker handle
+ *
+ * \return A pointer to the camera image (currently always an IplImage)
+ *         - the caller MUST NOT modify or free the returned object.
+ **/
+ADDAPI void*
+ADDCALL psmove_tracker_get_frame(PSMoveTracker *tracker);
 
 /**
  * \brief Get the current camera image as 24-bit RGB data blob
@@ -632,22 +650,6 @@ ADDCALL psmove_tracker_distance_from_radius(PSMoveTracker *tracker,
 ADDAPI void
 ADDCALL psmove_tracker_set_distance_parameters(PSMoveTracker *tracker,
         float height, float center, float hwhm, float shape);
-
-/**
- * \brief Get an unused color that doesn't conflict with tracked controllers
- *
- * Get an unused color that isn't yet used by any tracked controllers
- *
- * \param tracker A valid \ref PSMoveTracker handle
- * \param r Pointer to store the red component of the color
- * \param g Pointer to store the green component of the color
- * \param g Pointer to store the blue component of the color
- *
- * \return PSMove_True on success, PSMove_False otherwise
- **/
-ADDAPI enum PSMove_Bool
-ADDCALL psmove_tracker_get_next_unused_color(PSMoveTracker *tracker,
-        unsigned char *r, unsigned char *g, unsigned char *b);
 
 /**
  * \brief Destroy an existing tracker instance and free allocated resources
