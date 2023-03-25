@@ -22,6 +22,7 @@ jobs:
               run: |
                 sudo apt update && sudo apt upgrade -y
                 sudo apt install libusb-1.0-0-dev libusb-0.1-4 libusb-dev bluez libbluetooth-dev dbus libdbus-1-dev libudev-dev libxtst-dev libgtk-4-dev
+                sudo apt install --reinstall pkg-config
             - name: Build
               run: |
                 ./build-PSMoveApi.sh
