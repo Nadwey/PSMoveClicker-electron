@@ -21,7 +21,7 @@ jobs:
             - name: Install dependencies
               run: |
                 sudo apt update && sudo apt upgrade -y
-                sudo apt install libusb-dev bluez libbluetooth-dev dbus libdbus-1-dev libudev-dev
+                sudo apt install libusb-1.0-0-dev libusb-0.1-4 libusb-dev bluez libbluetooth-dev dbus libdbus-1-dev libudev-dev
             - name: Build
               run: |
                 ./build-PSMoveApi.sh
