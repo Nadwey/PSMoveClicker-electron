@@ -3,7 +3,7 @@ name: "Build"
 on: [push]
 jobs:
     analyze:
-        name: Build (Windows)
+        name: Build (Linux)
 
         permissions:
             actions: read
@@ -13,13 +13,11 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                os: [windows-latest]
+                os: [ubuntu-latest]
         runs-on: ${{ matrix.os }}
 
         steps:
             - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
-            - name: Install and build
+            - name: Install dependencies
               run: |
-                  npm ci
-                  npm run build
+                sudo apt install libusb-dev bluez bluez-dev
