@@ -38,6 +38,7 @@ namespace PSMC
 		static std::unordered_map<const char *, Controller> controllers; // stored by serial
 		static float swingForce;
 		static Input::Input *input;
+		static bool adofaiMode;
 
 	private:
 		ControllerHandler *handler;
@@ -53,7 +54,7 @@ struct ControllerHandler : public psmoveapi::Handler
 	}
 
 	virtual void update(Controller *controller)
-	{	
+	{
 		if (!PSMC::ControllerManager::controllers.count(controller->serial))
 			PSMC::ControllerManager::controllers[controller->serial] = PSMC::Controller();
 
@@ -71,8 +72,17 @@ struct ControllerHandler : public psmoveapi::Handler
 			controller->color.g = 1.0f;
 			controller->color.b = 1.0f;
 			controllerEx->clicked = true;
-			PSMC::ControllerManager::input->MouseDown(Input::MouseButton::LeftButton);
-			PSMC::ControllerManager::input->MouseUp(Input::MouseButton::LeftButton);
+
+			if (PSMC::ControllerManager::adofaiMode)
+			{
+				PSMC::ControllerManager::input->KeyDown(static_cast<Input::KeyType>(static_cast<int>(Input::KeyType::A) + controller->index));
+				PSMC::ControllerManager::input->KeyUp(static_cast<Input::KeyType>(static_cast<int>(Input::KeyType::A) + controller->index));
+			}
+			else
+			{
+				PSMC::ControllerManager::input->MouseDown(Input::MouseButton::LeftButton);
+				PSMC::ControllerManager::input->MouseUp(Input::MouseButton::LeftButton);
+			}
 		}
 		if (controller->buttons & Btn_CROSS && !(controllerEx->prevButtons & Btn_CROSS)) // Left button down
 		{
@@ -95,8 +105,6 @@ struct ControllerHandler : public psmoveapi::Handler
 
 		if (controller->gyroscope.x >= PSMC::ControllerManager::swingForce)
 			controllerEx->clicked = false;
-
-		
 
 		// Mouse
 		if (controller->trigger > 0.5f)

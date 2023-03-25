@@ -60,6 +60,9 @@ namespace Input
         void MouseUp(MouseButton key);
         void MouseMove(int x, int y);
 
+        void KeyDown(KeyType key);
+        void KeyUp(KeyType key);
+
     private:
         Display *display = nullptr;
         Window root = 0;

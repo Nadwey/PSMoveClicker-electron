@@ -33,6 +33,18 @@ namespace Input
         XTestFakeRelativeMotionEvent(display, x, y, 0);
         XFlush(display);
     }
+
+    void Input::KeyDown(KeyType key)
+    {
+        XTestFakeKeyEvent(display, XKeysymToKeycode(display, mapKey(key)), true, 0);
+        XFlush(display);
+    }
+
+    void Input::KeyUp(KeyType key)
+    {
+        XTestFakeKeyEvent(display, XKeysymToKeycode(display, mapKey(key)), false, 0);
+        XFlush(display);
+    }
 };
 
 #endif

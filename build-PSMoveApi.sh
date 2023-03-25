@@ -1,5 +1,4 @@
 #!/bin/sh
-# hell yeah bash
 
 if [ ! -d psmoveapi-build ]; then
   echo "Cloning psmoveapi..."

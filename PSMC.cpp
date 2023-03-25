@@ -36,6 +36,7 @@ namespace PSMC
     }
 
     std::unordered_map<const char*, Controller> ControllerManager::controllers;
-    float ControllerManager::swingForce = -5;
+    float ControllerManager::swingForce = -6;
     Input::Input* ControllerManager::input = nullptr;
+    bool ControllerManager::adofaiMode = false;
 }
