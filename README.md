@@ -16,8 +16,8 @@ Contributions are welcome.
 
 #### Dependencies
 
-Fedora/shit with dnf: `sudo dnf install libusb-compat-0.1-devel libusbx-devel bluez bluez-libs-devel dbus-devel libXtst-devel gtkmm4.0-devel`
-Debian/Ubuntu/Linux Mint: Good luck
+* Fedora/shit with dnf: `sudo dnf install libusb-compat-0.1-devel libusbx-devel bluez bluez-libs-devel dbus-devel libXtst-devel gtkmm4.0-devel`
+* Debian/Ubuntu/Linux Mint: Good luck
 
 I will add more distros sometime... For now just install whatever `build-PSMoveApi.sh` spits out and gtkmm4.
 
