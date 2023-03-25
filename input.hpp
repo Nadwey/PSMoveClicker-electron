@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef __linux__ // and X11
 #include <X11/Xlib.h>
 #include <X11/Xlib.h>
@@ -15,8 +17,37 @@ namespace Input
 {
     enum class MouseButton
     {
-        LeftButton = 0,
+        LeftButton,
+        MiddleButton,
         RightButton,
+    };
+
+    enum class KeyType { // :)
+        A,
+        B,
+        C,
+        D,
+        E,
+        F,
+        G,
+        H,
+        I,
+        J,
+        K,
+        L,
+        M,
+        N,
+        O,
+        P,
+        Q,
+        R,
+        S,
+        T,
+        U,
+        V,
+        X,
+        Y,
+        Z
     };
 
     class Input
@@ -32,11 +63,5 @@ namespace Input
     private:
         Display *display = nullptr;
         Window root = 0;
-
-#ifdef __linux__
-        int keyToX11Key(MouseButton key);
-#elif _WIN32
-        something keyToWinApiKey(MouseButton key);
-#endif
     };
 };
