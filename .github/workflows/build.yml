@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update && sudo apt upgrade -y
-          sudo apt install build-essential git g++ libusb-1.0-0-dev libusb-0.1-4 libusb-dev bluez libbluetooth-dev dbus libdbus-1-dev libudev-dev libxtst-dev libgtk-4-dev libgtk-4-bin pkg-config
+          sudo apt install mm-common autotools-dev build-essential git g++ libusb-1.0-0-dev libusb-0.1-4 libusb-dev bluez libbluetooth-dev dbus libdbus-1-dev libudev-dev libxtst-dev libgtk-4-dev libgtk-4-bin pkg-config
 
           wget https://download.gnome.org/sources/libsigc++/3.4/libsigc++-3.4.0.tar.xz
           tar Jxvf libsigc++-3.4.0.tar.xz
