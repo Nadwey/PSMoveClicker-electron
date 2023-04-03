@@ -64,7 +64,9 @@ namespace Input
         void KeyUp(KeyType key);
 
     private:
+#ifdef __linux__ // and X11
         Display *display = nullptr;
         Window root = 0;
+#endif
     };
 };

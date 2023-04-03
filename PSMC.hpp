@@ -3,6 +3,10 @@
 #ifndef PSMC_H
 #define PSMC_H
 
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+
 #include "psmoveapi/include/psmoveapi.h"
 #include <unordered_map>
 #include <sstream>

@@ -16,7 +16,7 @@ Contributions are welcome.
 
 #### Dependencies
 
-* Fedora/shit with dnf: `sudo dnf install libusb-compat-0.1-devel libusbx-devel bluez bluez-libs-devel dbus-devel libXtst-devel gtkmm4.0-devel`
+* Fedora/shit with dnf: `sudo dnf install make cmake git libusb-compat-0.1-devel libusbx-devel bluez bluez-libs-devel dbus-devel libXtst-devel gtkmm4.0-devel`
 * Debian/Ubuntu/Linux Mint: Good luck
 
 I will add more distros sometime... For now just install whatever `build-PSMoveApi.sh` spits out and gtkmm4.
@@ -32,6 +32,19 @@ Run `build.sh`
 The default compiler is `clang++` you can change this by editing the top line.
 
 ~~I could make the build use CMake, but I'm too lazy and I don't know how to use CMake :D~~
+
+### Windows
+
+#### Requirements
+
+* [Git for Windows](https://gitforwindows.org/)
+* [CMake](https://cmake.org/download/)
+* [Visual Studio](https://visualstudio.microsoft.com/)
+* [MSYS2](https://www.msys2.org/)
+
+#### Dependencies
+
+`pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-gtkmm4`
 
 ## Usage
 
