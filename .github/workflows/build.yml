@@ -23,6 +23,8 @@ jobs:
           sudo apt update && sudo apt upgrade -y
           sudo apt install cmake make mm-common autotools-dev build-essential git g++ libusb-1.0-0-dev libusb-0.1-4 libusb-dev bluez libbluetooth-dev dbus libdbus-1-dev libudev-dev libxtst-dev libgtk-4-dev libgtk-4-bin pkg-config
 
+      - name: Install libsigc++-3
+        run: |
           wget https://download.gnome.org/sources/libsigc++/3.4/libsigc++-3.4.0.tar.xz
           tar Jxvf libsigc++-3.4.0.tar.xz
           cd libsigc++-3.4.0/build/
@@ -30,30 +32,38 @@ jobs:
           make
           sudo make install
 
+      - name: Install glibmm-2
+        run: |
           wget https://download.gnome.org/sources/glibmm/2.76/glibmm-2.76.0.tar.xz
           tar Jxvf glibmm-2.76.0.tar.xz
-          cd glibmm-2.76.0/build/
-          cmake ..
+          cd glibmm-2.76.0/
+          ./autogen.sh
           make
           sudo make install
 
+      - name: Install cairomm
+        run: |
           git clone https://github.com/freedesktop/cairomm
-          cd cairomm/build/
-          cmake ..
+          cd cairomm
+          ./autogen.sh
           make
           sudo make install
 
+      - name: Install pangomm
+        run: |
           wget https://download.gnome.org/sources/pangomm/2.50/pangomm-2.50.1.tar.xz
           tar Jxvf pangomm-2.50.1.tar.xz
-          cd pangomm-2.50.1/build/
-          cmake ..
+          cd pangomm-2.50.1/
+          ./autogen.sh
           make
           sudo make install
 
+      - name: Install glibmm-2
+        run: |
           wget https://download.gnome.org/sources/gtkmm/4.10/gtkmm-4.10.0.tar.xz
           tar Jxvf gtkmm-4.10.0.tar.xz
-          cd gtkmm-4.10.0/build/
-          cmake ..
+          cd gtkmm-4.10.0/
+          ./autogen.sh --prefix=/usr
           make
           sudo make install
 
