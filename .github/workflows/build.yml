@@ -2,28 +2,62 @@ name: "Build"
 
 on: [push]
 jobs:
-    analyze:
-        name: Build (Linux)
+  analyze:
+    name: Build (Linux)
 
-        permissions:
-            actions: read
-            contents: read
-            security-events: write
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
 
-        strategy:
-            fail-fast: false
-            matrix:
-                os: [ubuntu-latest]
-        runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
 
-        steps:
-            - uses: actions/checkout@v3
-            - name: Install dependencies
-              run: |
-                sudo apt update && sudo apt upgrade -y
-                sudo apt install libusb-1.0-0-dev libusb-0.1-4 libusb-dev bluez libbluetooth-dev dbus libdbus-1-dev libudev-dev libxtst-dev libgtk-4-dev
-                sudo apt install --reinstall pkg-config
-            - name: Build
-              run: |
-                ./build-PSMoveApi.sh
-                ./build.sh
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          sudo apt update && sudo apt upgrade -y
+          sudo apt install build-essential git g++ libusb-1.0-0-dev libusb-0.1-4 libusb-dev bluez libbluetooth-dev dbus libdbus-1-dev libudev-dev libxtst-dev libgtk-4-dev libgtk-4-bin pkg-config
+
+          wget https://download.gnome.org/sources/libsigc++/3.4/libsigc++-3.4.0.tar.xz
+          tar Jxvf libsigc++-3.4.0.tar.xz
+          cd libsigc++-3.4.0/
+          ./autogen.sh --prefix=/usr/local
+          make
+          sudo make install
+
+          wget https://download.gnome.org/sources/glibmm/2.76/glibmm-2.76.0.tar.xz
+          tar Jxvf glibmm-2.76.0.tar.xz
+          cd glibmm-2.76.0/
+          ./autogen.sh --prefix=/usr
+          make
+          sudo make install
+
+          git clone https://github.com/freedesktop/cairomm
+          cd cairomm
+          ./autogen.sh --prefix=/usr
+          make
+          sudo make install
+
+          wget https://download.gnome.org/sources/pangomm/2.50/pangomm-2.50.1.tar.xz
+          tar Jxvf pangomm-2.50.1.tar.xz
+          cd pangomm-2.50.1/
+          ./autogen.sh --prefix=/usr
+          make
+          sudo make install
+
+          wget https://download.gnome.org/sources/gtkmm/4.10/gtkmm-4.10.0.tar.xz
+          tar Jxvf gtkmm-4.10.0.tar.xz
+          cd gtkmm-4.10.0/
+          ./autogen.sh --prefix=/usr
+          make
+          sudo make install
+
+      - name: Build
+        run: |
+          ./build-PSMoveApi.sh
+          ./build.sh
