@@ -1,5 +1,7 @@
 # PSMoveClicker-electron
 
+![PSMoveClicker window](https://user-images.githubusercontent.com/81181783/231166050-40ccf6e5-93fa-4b64-a8cb-8c87bd944a71.png)
+
 Program was made for ADOFAI, but you can use it as a mouse :)
 
 Btw, I'm not responsible for breaking your PSMove or something else
